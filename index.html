@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<h1>Hello Blog</h1>
+
+	<script>
+		fetch('https://50ncrkxdy7.execute-api.us-west-2.amazonaws.com/prod/listArticles')
+		  .then((response) => {
+		    return response.json();
+		  })
+		  .then((data) => {
+		    console.log(data);
+		  });
+	</script>
+</html>
