@@ -1,0 +1,25 @@
+{
+  "name": "blog-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/punknight16/blog-db.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/punknight16/blog-db/issues"
+  },
+  "homepage": "https://github.com/punknight16/blog-db#readme",
+  "dependencies": {
+    "aws-sdk": "^2.645.0",
+    "mu2-updated": "^0.5.21"
+  }
+}

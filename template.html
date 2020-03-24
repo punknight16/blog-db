@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Simple BLOG DB</title>
+	</head>
+	<body>
+		<h1>Simple BLOG DB</h1>
+		<h2>ARTICLES</h2>
+		<section id="section1">
+			{{#Posts}}
+  			{{ArticleContent}}
+			{{/Posts}}
+
+		</section>
+		
+	</body>
+	<script>
+		function htmlDecode(input){
+		  var e = document.createElement('div');
+		  e.innerHTML = input;
+		  // handle case of empty input
+		  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+		}
+
+		var section1 = document.getElementById("section1");
+		section1.innerHTML = htmlDecode(section1.innerHTML);
+		
+	</script>
+</html>
