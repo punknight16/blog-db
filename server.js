@@ -10,17 +10,21 @@ var s3 = new AWS.S3({"region":"us-west-2"});
 var bucket = "unwyre-user";
 var user = "us-west-2:49307e47-8c31-4628-a607-a7eb852d50ae"
 var page = "optionA.html";
-
+var domain = "artof-adulting.blog";
 
 var app = http.createServer(function(req, res){
 	switch(req.url){
 		case '/':
 			//in parallel
-			var page = '<html>Hello World</html>';
-			doParallel([callA, callB, callC], function(result_arr){
-				if(result_arr[0][0] || result_arr[1][0]){
-					res.status(200);
-					res.end(err);
+			doParallel([callA, callB, callC, callD], function(result_arr){
+				if(result_arr[0][0] || result_arr[1][0] || result_arr[2][0] || result_arr[3][0]){
+					res.setStatus = 200;
+					res.end(
+						JSON.stringify(result_arr[0][0]) + 
+						JSON.stringify(result_arr[1][0]) +
+						JSON.stringify(result_arr[2][0]) +
+						JSON.stringify(result_arr[3][0])
+					);
 				} else {
 				  /*var ContentLength = result_arr[0][1].ContentLength;
 				  res.writeHead(200, {'Content-Type': 'text/html; charset=utf8', 'Content-Length': result_arr[1][1].length });
@@ -28,13 +32,15 @@ var app = http.createServer(function(req, res){
 					var bufferStream = new PassThrough();
 					bufferStream.end( result_arr[1][1] );
 					bufferStream.pipe( res );*/
-					var data = JSON.parse(result_arr[1][1]);
-					
+
+					console.log("result_arr[3][1]: ", result_arr[3][1]);
 					res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
 					var stream = mu.compileAndRender(
 						"template.html", 
 						{
-							Posts: data.Items, 		
+							Article: JSON.parse(result_arr[1][1]).Items,
+							Like: JSON.parse(result_arr[2][1]).Items,
+							Reply: JSON.parse(result_arr[3][1]).Items
 						}
 					);
 					stream.pipe(res);
@@ -76,7 +82,7 @@ var code = `<script>
 		  	var body = data.Items.reduce(function(res, el){
 		  		return res+=el.ArticleContent
 		  	}, "");
-		    console.log(data);
+		    
 		    var section1 = document.getElementById('section1');
 		    section1.innerHTML = body;
 		  });
@@ -137,10 +143,9 @@ function callB(cb){
 	}
 
 	const req = https.request(options, res => {
-	  console.log(`statusCode: ${res.statusCode}`)
 	  var data = '';
 	  res.on('data', d => {
-	    data += d.toString('utf8');
+	    	data += d.toString('utf8');
 	  });
 	  res.on('end', function(){
 	  	return cb(null, data);
@@ -156,9 +161,70 @@ function callB(cb){
 }
 
 function callC(cb){
-	setTimeout(function(){
-    
-		cb();
-	}, 1000);
+	const data = JSON.stringify({
+  	DomainName: "artof-adulting.blog"
+	})
+
+	const options = {
+	  hostname: 'ou4dst87ad.execute-api.us-west-2.amazonaws.com',
+	  port: 443,
+	  path: '/prod/list',
+	  method: 'POST',
+	  headers: {
+	    'Content-Type': 'application/json',
+	    'Content-Length': data.length
+	  }
+	}
+
+	const req = https.request(options, res => {
+	  var data = '';
+	  res.on('data', d => {
+	    	data += d.toString('utf8');
+	  });
+	  res.on('end', function(){
+	  	return cb(null, data);
+	  })
+	})
+
+	req.on('error', error => {
+	  return cb(error);
+	})
+
+	req.write(data)
+	req.end()
+}
+
+function callD(cb){
+	const data = JSON.stringify({
+  	DomainName: "artof-adulting.blog"
+	})
+
+	const options = {
+	  hostname: '6y3bnx93ub.execute-api.us-west-2.amazonaws.com',
+	  port: 443,
+	  path: '/prod/list',
+	  method: 'POST',
+	  headers: {
+	    'Content-Type': 'application/json',
+	    'Content-Length': data.length
+	  }
+	}
+
+	const req = https.request(options, res => {
+	  var data = '';
+	  res.on('data', d => {
+	    	data += d.toString('utf8');
+	  });
+	  res.on('end', function(){
+	  	return cb(null, data);
+	  })
+	})
+
+	req.on('error', error => {
+	  return cb(error);
+	})
+
+	req.write(data)
+	req.end()
 }
 
