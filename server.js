@@ -26,24 +26,18 @@ var app = http.createServer(function(req, res){
 						JSON.stringify(result_arr[3][0])
 					);
 				} else {
-				  /*var ContentLength = result_arr[0][1].ContentLength;
-				  res.writeHead(200, {'Content-Type': 'text/html; charset=utf8', 'Content-Length': result_arr[1][1].length });
-					var buffer = new Buffer.alloc(ContentLength, result_arr[0][1].Body, 'utf8');
-					var bufferStream = new PassThrough();
-					bufferStream.end( result_arr[1][1] );
-					bufferStream.pipe( res );*/
-
-					console.log("result_arr[3][1]: ", result_arr[3][1]);
-					res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
-					var stream = mu.compileAndRender(
-						"optionA.html", 
-						{
-							Article: JSON.parse(result_arr[1][1]).Items,
-							Like: JSON.parse(result_arr[2][1]).Items,
-							Reply: JSON.parse(result_arr[3][1]).Items
-						}
-					);
-					stream.pipe(res);
+					mu.compileText(page, result_arr[0][1].Body.toString('utf8'), function(err, compiledTemplate){
+						res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+						var stream = mu.render(
+							compiledTemplate, 
+							{
+								Article: JSON.parse(result_arr[1][1]).Items,
+								Like: JSON.parse(result_arr[2][1]).Items,
+								Reply: JSON.parse(result_arr[3][1]).Items
+							}
+						);
+						stream.pipe(res);
+					});
 				}
 			})
 			break;
