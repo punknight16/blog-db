@@ -5,35 +5,36 @@
 	<body>
 		<h1>Simple BLOG DB</h1>
 		<h2>ARTICLES</h2>
-		<section id="section1" style="display: block"></section>
-		<section id="article-data-all" style="display: none;">
+		<div id="div1" style="display: block"></div>
+		<div id="article-data-all" style="display: none;">
 			{{#Article}}
 				<div class="article-data" data-articleid="{{PublishDate}}">
   			{{ArticleContent}}
   			</div>
 			{{/Article}}
-		</section>
-		<section id="like-data-all" style="display: none;">
+		</div>
+		<div id="like-data-all" style="display: none;">
 			{{#Like}}
 				<div class="like-data" data-articleid="{{PublishDate}}">
 					Like
 				</div>
 			{{/Like}}
-		</section>
-		<section id="reply-data-all" style="display: none;">
+		</div>
+		<div id="reply-data-all" style="display: none;">
 			{{#Reply}}
 				<div class="reply-data" data-articleid="{{PublishDate}}">
 					{{ReplyContent}}
 				</div>
 			{{/Reply}}
-		</section>
+		</div>
 		
 	</body>
 	<script>
 
 		function combineAll(content, likes, replies, reply_content){
-			var literal = `<div class="w3-justify"><br><p class="w3-left"><button class="w3-button w3-white w3-border" onclick="likeFunction(this)"><b><i class="fa fa-thumbs-up"></i> Like &nbsp;</b><span class="w3-tag w3-white w3-border">${likes}</span></button></p><p class="w3-right"><button class="w3-button w3-black" onclick="myFunction('demo2')"><b>Replies &nbsp;</b> <span class="w3-tag w3-white">${replies}</span></button></p><p class="w3-clear"></p></div>`
-			return content+literal+reply_content;
+			var content_literal = `<div class="w3-container w3-white w3-margin w3-padding-large"><div class="w3-center">${content}</div></div>`;
+			var control_literal = `<div class="w3-justify"><br><p class="w3-left"><button class="w3-button w3-white w3-border" onclick="likeFunction(this)"><b><i class="fa fa-thumbs-up"></i> Like &nbsp;</b><span class="w3-tag w3-white w3-border">${likes}</span></button></p><p class="w3-right"><button class="w3-button w3-black" onclick="myFunction('demo2')"><b>Replies &nbsp;</b> <span class="w3-tag w3-white">${replies}</span></button></p><p class="w3-clear"></p></div>`
+			return content_literal+control_literal+reply_content;
 		}
 		function htmlDecode(input){
 		  var e = document.createElement('div');
@@ -43,7 +44,7 @@
 		}
 
 		var article_arr = document.querySelectorAll(".article-data");
-		var section_arr = [...article_arr].map((el, index)=>{
+		var div_arr = [...article_arr].map((el, index)=>{
 			var content = htmlDecode(el.innerHTML);
 			return {id: el.dataset.articleid, content: content, like_num: 0, reply_num: 0, reply_content: ""}
 		})
@@ -51,29 +52,29 @@
 		var like_arr = document.querySelectorAll(".like-data");
 		[...like_arr].map((el, index)=>{
 			console.log("like iso_string: ", el.dataset.articleid.substring(0, 24));
-			var found_index = section_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 27)})
+			var found_index = div_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 27)})
 			if(found_index > -1){
-				section_arr[found_index].like_num++;
+				div_arr[found_index].like_num++;
 			}
 		})
 		console.log("here B")
 		var reply_arr = document.querySelectorAll(".reply-data");
 		[...reply_arr].map((el, index)=>{
 			console.log("reply iso_string: ", el.dataset.articleid.substring(0, 24));
-			var found_index = section_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 24)})
+			var found_index = div_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 24)})
 			if(found_index > -1){
-				section_arr[found_index].reply_num++;
-				section_arr[found_index].reply_content+= htmlDecode(el.innerHTML)
+				div_arr[found_index].reply_num++;
+				div_arr[found_index].reply_content+= htmlDecode(el.innerHTML)
 
 			}
 		})
 		
-		var body = section_arr.reduce(function(res, el){
+		var body = div_arr.reduce(function(res, el){
 		  return res+= combineAll(el.content, el.like_num, el.reply_num, el.reply_content);
 		}, "");
 
-		var section1 = document.getElementById("section1");
-		section1.innerHTML = body;
+		var div1 = document.getElementById("div1");
+		div1.innerHTML = body;
 		
 	</script>
 </html>

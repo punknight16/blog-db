@@ -1,5 +1,8 @@
 <html>
 	<head>
+		<link rel="icon" 
+      type="image/png" 
+      href="https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2:49307e47-8c31-4628-a607-a7eb852d50ae/images/a_logo.png">
 		<link rel="stylesheet" type="text/css" href="data:text/css,@import%20url%28%27https%3A//www.w3schools.com/w3css/4/w3.css%27%29%3B">
 		<link rel="stylesheet" type="text/css" href="data:text/css,@import%20url%28%27https%3A//fonts.googleapis.com/css%3Ffamily%3DOswald%27%29%3B">
 		<link rel="stylesheet" type="text/css" href="data:text/css,@import%20url%28%27https%3A//fonts.googleapis.com/css%3Ffamily%3DOpen%20Sans%27%29%3B">
@@ -10,6 +13,8 @@
 		<link rel="stylesheet" type="text/css" href="data:text/css,@import%20url%28%27https%3A//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css%27%29%3B">
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44077230-3"></script>
+		
+
 		<script>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
@@ -18,8 +23,12 @@
 		  gtag('config', 'UA-44077230-3');
 		</script>
 		<script data-ad-client="ca-pub-5266033388618516" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
+		<script src="https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/build/amazon-cognito-identity.min.js"></script>
+		<script src="https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/build/aws-sdk.min.js"></script>
+		<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/build/jquery-3.4.1.min.js' type='text/javascript'></script>
+		<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/build/load-image.all.min.js' type='text/javascript'></script>
 		<style>
+
 			
 h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
 body {font-family: "Open Sans"}
@@ -27,6 +36,119 @@ body {font-family: "Open Sans"}
 h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
 body {font-family: "Open Sans"}
 
+footer ul{
+	list-style-type:none;
+}
+		/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  margin: 8% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: fit-content; /* Could be more or less, depending on screen size */
+  background-color: white;
+}
+#modal-body {
+  margin-top: 20px;
+}
+
+/* The Close Button */
+.close {
+  margin-top: -20px;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.center-modal {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  justify-content: space-between;
+}
+		.login-container {
+			position: absolute;
+			right: 20px;
+			top: 38px;
+			border-left: 1px solid gray;
+			border-bottom: 1px solid gray;
+			border-right: 1px solid gray;
+			width: fit-content;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		.register-container {
+			/*border: 1px solid gray;*/
+			width: 300px;		
+		}
+		.form-container {
+			display: flex;
+			flex-direction: column;
+				
+			padding-left: 20px;
+			padding-right: 20px;
+			background-color: white;
+		}
+		.username-input{
+			margin-top: 10px;
+			margin-bottom: 4px;
+			border: none;
+			border-bottom: 1px solid gray;
+		}
+		.password-input{
+			margin-top: 2px;
+			margin-bottom: 10px;
+			border: none;
+			border-bottom: 1px solid gray;
+		}
+		.email-input {
+			margin: 10px 0 10px 0;
+			border: none;
+			border-bottom: 1px solid gray;
+		}
+		/*Image Uploader*/
+		.height-width-300 {
+  height: 300px;
+  width: 300px;
+}
+.height-width-100-percent {
+  height: 100%;
+  width: 100%;
+}
+.height-300 {
+  height: 300px;
+}
+.width-300 {
+  width: 300px;
+}
+
+.border {
+	border: 1px solid #CCCCCC;
+}
+
+.mt-5 {
+	margin-top: 5px;
+}
 		</style>
 	</head>
 	<body>
@@ -37,6 +159,8 @@ body {font-family: "Open Sans"}
 				<a href="https://www.pinterest.com/punknight16/" class="w3-bar-item w3-button"><i class="fa fa-pinterest">&nbsp;</i></a>
 				<a href="https://twitter.com/punknight16" class="w3-bar-item w3-button"><i class="fa fa-twitter"></i></a>
 				<a href="https://www.linkedin.com/in/daniel-miller-713aa459/" class="w3-bar-item w3-button"><i class="fa fa-linkedin"></i></a>
+				<button id="hideBtn" class="w3-bar-item w3-button w3-right">Login &#9660;</button>
+				<button id="signUpBtn" class="w3-bar-item w3-button w3-right">Signup</button>
 </section><section class="w3-content" style="max-width:1600px">
 
   <header class="w3-container w3-center w3-padding-48 w3-white"><h1 class="w3-xxxlarge"><b>Art of Adulting</b></h1><h6>Welcome to the blog of <span class="w3-tag">Where I learn how to adult</span></h6></header>
@@ -45,59 +169,29 @@ body {font-family: "Open Sans"}
 
   <div class="w3-row w3-padding w3-border">
   	<button type="button" class="w3-button w3-block w3-black" onclick="loadMoreArticles()">Load More Articles</button>
-    <div id="section1" class="w3-col l8 s12"><!--left column starts here-->
-    	
-    	<div class="w3-container w3-white w3-margin w3-padding-large"><div class="w3-center">
-				<!--Article 1-->
-				<div>
-    		<h3>STRUGGLING WITH RUSSIAN</h3><h5>but doing well with Spanish, <span class="w3-opacity">March 19, 2020</span></h5></div><div class="w3-justify"><img src="https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2:49307e47-8c31-4628-a607-a7eb852d50ae/images/window_sill_riley.jpg" alt="Men in Hats" style="width:100%" class="w3-padding-16"><p><strong>Languages!</strong> So for my dive into 10 languages, I have been a little stuck on Russian. I have tried some youtube videos, and I tried out Duo Lingo for Russian. I think I might have to learn the Cyrillic alphabet to learn Russian, which is fine, it’s just going to take some more time.</p><p>For Spanish, I speak Spanish to a neighbor who sits on his porch while I walk my dog every morning. Our conversation is pretty much this:</p><p>Me: Hola,<br />Him: Hola amigo, como estas?<br />Me: Bien, e tu?<br />Him: Muy bien... Have a good day my friend.<br />Me: Que tengas un buen dia!<br /><br />I’d like to get this conversation down in each language, and maybe learn to say something else to my neighbor in Spanish. Duo Lingo has inspired me to at least learn how to say, I am NAME. Are you NAME? Yes and no. Here is the start of that study. (Hello, I am Daniel. Yes, good.)<br /><br /><ul>
-<li>Russian - Priveet, ya Daniil. Da, khorosho.</li><li>German - Hallo, ich bin Daniel. Ja gut.</li><li>Spanish - Hola, soy Daniel. Si bien.</li><li>French - Bonjour, je suis daniel. Oui bien.</li><li>Portuguese - Ola, eu sou daniel. Sim Bom.</li><li>Japanese - Konnichiwa, Danierudesu. Hai, ii neh.</li><li>Korean - Annyeong-hasseo, daniel-ibnida. Ne, johsuibnida.</li><li>Chinese - Ni hao, wah shuh dānní'ěr. Wo shi, hun how.</li><li>Vietnamese - cin chao, tôi là daniel. Vang tot.</li><li>Tagalog - Kumusta, ako si daniel. Oh oh magaling.</li></ul></p><p><br></p>
-<!--End Article 1-->
-<!--Controls 1-->
-<div class="w3-left"><button class="w3-button w3-white w3-border" onclick="likeFunction(this)"><b><i class="fa fa-thumbs-up"></i> Like</b></button></p><p class="w3-right"><button class="w3-button w3-black" onclick="myFunction('demo2')"><b>Replies  </b> <span class="w3-tag w3-white">2</span></button></div>
-<!--End Controls 1-->
-			<p class="w3-clear"></p></div></div>
-  <hr>
-  <div class="w3-container w3-white w3-margin w3-padding-large"><div class="w3-center">
-       <!--Article 2-->
-       <h3 style="white-space: normal;">STRUGGLING WITH RUSSIAN</h3><h5><span style="white-space: normal;">But doing well with Spanish,</span> <span class="w3-opacity">March 19, 2020</span></h5></div>
-        <div class="w3-justify"><img src="https://www.w3schools.com/w3css/tryw3css_templates_fashion_blog.htmw3images/man_hat.jpg" alt="Men in Hats" style="width:100%" class="w3-padding-16">
-        <p><strong>Languages!</strong> So for my dive into 10 languages, I have been a little stuck on Russian. I have tried some youtube videos, and I tried out Duo Lingo for Russian. I think I might have to learn the Cyrillic alphabet to learn Russian, which is fine, it’s just going to take some more time.</p>
-<p>For Spanish, I speak Spanish to a neighbor who sits on his porch while I walk my dog every morning. Our conversation is pretty much this:</p>
-<p>
-Me: Hola,<br />
-Him: Hola amigo, como estas?<br />
-Me: Bien, e tu?<br />
-Him: Muy bien... Have a good day my friend.<br />
-Me: Que tengas un buen dia!<br />
-</p>
-<p>
-I’d like to get this conversation down in each language, and maybe learn to say something else to my neighbor in Spanish. Duo Lingo has inspired me to at least learn how to say, I am NAME. Are you NAME? Yes and no. Here is the start of the that study. (Hello, I am Daniel. Yes, good.)</p>
-<p><ul>
-
-<li>Russian - Priveet, ya Daniil. Da, khorosho.</li>
-<li>German - Hallo, ich bin Daniel. Ja gut.</li>
-<li>Spanish - Hola, soy Daniel. Si bien.
-<li>French - Bonjour, je suis daniel. Oui bien.</li>
-<li>Portuguese - Ola, eu sou daniel. Sim Bom.</li>
-<li>Japanese - Konnichiwa, Danierudesu. Hai, ii neh.</li>
-<li>Korean - Annyeong-hasseo, daniel-ibnida. Ne, johsuibnida.</li>
-<li>Chinese - Ni hao, wah shuh dānní'ěr. Wo shi, hun how.</li>
-<li>Vietnamese - cin chao, tôi là daniel. Vang tot.</li>
-<li>Tagalog - Kumusta, ako si daniel. Oh oh magaling.</li>
-</div>
-<!--End Article 2-->
-<!--Controls 2-->
-<div class="w3-justify"><br><p class="w3-left"><button class="w3-button w3-white w3-border" onclick="likeFunction(this)"><b><i class="fa fa-thumbs-up"></i> Like &nbsp;</b><span class="w3-tag w3-white w3-border">2</span></button></p><p class="w3-right"><button class="w3-button w3-black" onclick="myFunction('demo2')"><b>Replies &nbsp;</b> <span class="w3-tag w3-white">2</span></button></p><p class="w3-clear"></p></div>
-<!--End Controls 2-->
-<!--Replies 2-->
-<div style="display:block"><div class="w3-row"><hr><div class="w3-col l2 m3"><img src="https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/images/dave_miller_headshot.jpg" style="width:90px;"></div><div class="w3-col l10 m9"><h4>David Miller <span class="w3-opacity w3-medium">March 20, 2020, 4:01 AM</span></h4><p>Je'm Appel Daniel. Nastrovia.</p><br></div></div><div class="w3-row w3-margin-bottom"><div class="w3-col l2 m3"><img src="https://www.w3schools.com/w3css/tryw3css_templates_fashion_blog.htmw3images/girl.jpg" style="width:90px;"></div><div class="w3-col l10 m9"><h4>Stacey Miller <span class="w3-opacity w3-medium">March 20, 2020, 12:27 PM</span></h4><p>I have some old primers for Russian. Learning the alphabet was the 1st step, but it took over 20 years to stop mixing up my cursive writing. Obviously, when writing in cursive I must be using phonetics. It's the only part of the Russian Language that took for me. R, da, nyet and dom is the retained vocabulary. Not much use here for "tsza" and "shch", but I think there's a joke in the making when dog becomes God. And that's your Russian lesson for today.😄</p></div></div></div>
-<!--End Replies 2-->
-
-</div></div>
-
-      
-    </div><!--left column ends here-->
+    <div id="articles_here" class="w3-col l8 s12"><!--left column starts here-->
+    	<div id="article-data-all" style="display: none;">
+			{{#Article}}
+				<div class="article-data" data-articleid="{{PublishDate}}">
+  			{{ArticleContent}}
+  			</div>
+			{{/Article}}
+		</div>
+		<div id="like-data-all" style="display: none;">
+			{{#Like}}
+				<div class="like-data" data-articleid="{{PublishDate}}">
+					Like
+				</div>
+			{{/Like}}
+		</div>
+		<div id="reply-data-all" style="display: none;">
+			{{#Reply}}
+				<div class="reply-data" data-articleid="{{PublishDate}}">
+					{{ReplyContent}}
+				</div>
+			{{/Reply}}
+		</div>
+  </div><!--left column ends here-->
 
   <div class="w3-col l4"><undefined></undefined><div class="w3-white w3-margin"><img src="https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/images/dmiller_headshot.jpg" alt="Jane" style="width:100%" class="w3-grayscale"><div class="w3-container w3-black"><h4>Daniel Miller</h4><p>Hi, I'm a writer, software developer, material science engineer, and inactive patent attorney. I like finding unique perspectives on how the world works and building applications.&nbsp;</p><p><br></p></div></div><hr>
 
@@ -117,13 +211,96 @@ I’d like to get this conversation down in each language, and maybe learn to sa
 
 <undefined></undefined>
 </section><section class="w3-modal w3-animate-opacity" id="subscribe"><div class="w3-modal-content" style="padding:32px"><div class="w3-container w3-white"><i onclick="document.getElementById('subscribe').style.display='none'" class="fa fa-remove w3-transparent w3-button w3-xlarge w3-right"></i><h2 class="w3-wide">SUBSCRIBE</h2><p>Join my mailing list to receive updates on the latest blog posts and other things.</p><p><input id="email2" class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p><button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" onclick="doSubscribe()">Subscribe</button></div></div>
-</section><section class="w3-container w3-dark-grey" style="padding:32px">
-<a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a><p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </section>
+<footer class="w3-container w3-dark-grey" style="padding:32px">
+<nav>
+			<ul style="display:flex; justify-content:center;">
+				<li><button  id="goSignUp" class="w3-bar-item w3-button">Register</button></li>
+				<li><button  id="goVerify" class="w3-bar-item w3-button">Verify Email</button></li>
+				<li><button  id="goProfile" class="w3-bar-item w3-button">Profile Photo</button></li>
+				<li><button  id="goForgot" class="w3-bar-item w3-button">Forgot Password</button></li>
+			</ul>
+		</nav>
+</footer>
+
+<form id="loginContainer" class="login-container form-container" style="flex-basis: fit-content; display: none;">
+		<label>Login:</label>
+		<input id="loginEmailInput" class="username-input" type="text" placeholder="email" />
+		<input id="loginPasswordInput" class="password-input" type="password" placeholder="password" />
+		<input id="loginButton" class="login-submit" type="submit" value="Login Now" />
+		<div id='loginErrorPanel' class='hide' 
+			style='text-align: center; margin-top: 4px'>
+			<small><span class='text-error'>*</span>Please use a valid <br />email and  password</small>
+		</div>
+	</form>
+
+	<div id="registerContainer" class="modal no-robot">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <form id="registerForm" class="form-container register-container">
+					<h3>Sign Up Today</h3>
+					<input id="registerEmailInput" class="register-input email-input" type="email" placeholder="Enter email..." />
+					<input id="registerPasswordInput" class="register-input password-input" type="password" placeholder="Enter password..." />
+					<input id="registerButton" class="register-submit" type="submit" value="Next" />
+					<div id='registerErrorPanel' class='hide' 
+						style='text-align: center; margin-top: 8px; line-height: 1em;'>
+						<small><span class='text-error'>*</span>Please use a valid email and a strong password with special characters.</small>
+					</div>
+					<!--<button id="loginBtn" class="link link-underline" style="margin-top: 10px;">Or Login</button>-->
+				</form>
+	  	</div>
+	  </div>
+	</div>
+
+	<div id="verifyContainer" class="modal no-robot">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <form id="confirmForm" class="form-container register-container" style="margin-top: -26px;">
+					<h3>Verify Email:</h3>
+					<!--<input class="register-input username-input" type="text" placeholder="username" />-->
+					<input id="confirmEmailInput" class="register-input email-input" type="email" placeholder="Enter email..." />
+					<input id="confirmCodeInput" class="register-input password-input" type="password" placeholder="Enter confirmation code..." />
+					<input id="ConfirmButton" class="register-submit" type="submit" value="Next" />
+					<div id='ConfirmErrorPanel' class='hide' 
+						style='text-align: center; margin-top: 8px; line-height: 1em;'>
+						<small><span class='text-error'>*</span>Please use a valid email and confirmation code.</small>
+					</div>
+					<!--<button id="loginBtn" class="link link-underline" style="margin-top: 10px;">Or Login</button>-->
+				</form>
+	  	</div>
+	  </div>
+	
+	  <div id="profileContainer" class="modal no-robot">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <div id='modal-body'>
+	    	<h3>Create Profile</h3>
+	    	<div style="display: block-inline; margin-bottom: 10px">
+	    		<label>Full Name
+	    		<input type='text' id="fullName" size="26" />
+	    	</div>
+	    	<input type='file' id="imgInp" class="width-300" />
+			   <div id='view-panel' class='height-width-300 border mt-5'>
+			    	<div id='image-layer' class='layer-0' style="display:flex; justify-content:center; align-items:center;">
+			    		<img id="image" src="#" alt="your image"  class='height-width-300'/>
+			    	</div>
+			    </div>
+			    <div style="margin-top: 10px; display: flex; justify-content: space-around">
+			  		<button id="uploadImgBtn" class="btn-dem btn-dem-primary">Upload</button>
+			  		<button id="cancelImgBtn" class="btn-dem btn-dem-secondary">Clear</button>
+			  	</div>
+	    </div>
+	  </div>
+	</div>
+
 		</main>
 		<script>
 		var AppContext = {LastEvalVal: null};
-		//fetch('https://50ncrkxdy7.execute-api.us-west-2.amazonaws.com/prod/listArticles')
+		//pull blog from DB//
+		/*
 		fetch('https://jaegnvmctc.execute-api.us-west-2.amazonaws.com/prod/list', {
 		  method: 'POST', // or 'PUT'
 		  body: JSON.stringify({
@@ -147,8 +324,8 @@ I’d like to get this conversation down in each language, and maybe learn to sa
 		    var section1 = document.getElementById('section1');
 		    section1.innerHTML = body;
 		  });
-
-  function loadMoreArticles(){
+	*/
+	function loadMoreArticles(){
     // you're at the bottom of the page
     fetch('https://jaegnvmctc.execute-api.us-west-2.amazonaws.com/prod/list', {
 	  method: 'POST', // or 'PUT'
@@ -185,7 +362,7 @@ I’d like to get this conversation down in each language, and maybe learn to sa
 	  });
 		
 	};
-
+	//subscription AJAX
 	function doSubscribe(){
 
 		var EmailAddr = document.getElementById('email1').value || document.getElementById('email2').value
@@ -207,6 +384,83 @@ I’d like to get this conversation down in each language, and maybe learn to sa
 		  	alert(`You are now a Subscriber: ${JSON.stringify(data)}`);
 		  });
 	}
+	//LOGIN CONTAINER//
+	document.getElementById("hideBtn").addEventListener("click", toggleLogin);
+	document.getElementById("signUpBtn").addEventListener("click", toggleRegister);
+function toggleLogin(e){
+	e.preventDefault();
+	if(document.getElementById("loginContainer").style.display == "none"){
+		document.getElementById("loginContainer").style.display = "flex"
+	} else {
+		document.getElementById("loginContainer").style.display = "none"
+	}
+}
+function toggleRegister(e){
+	e.preventDefault();
+	if(document.getElementById("registerContainer").style.display == "none"){
+		document.getElementById("registerContainer").style.display = "block"
+	} else {
+		document.getElementById("registerContainer").style.display = "none"
+	}
+}
 	</script>
+
+	<script>
+
+		function combineAll(content, likes, replies, reply_content){
+			var control_literal = `<div class="w3-justify"><br><p class="w3-left"><button class="w3-button w3-white w3-border" onclick="likeFunction(this)"><b><i class="fa fa-thumbs-up"></i> Like &nbsp;</b><span class="w3-tag w3-white w3-border">${likes}</span></button></p><p class="w3-right"><button class="w3-button w3-black" onclick="myFunction('demo2')"><b>Replies &nbsp;</b> <span class="w3-tag w3-white">${replies}</span></button></p><p class="w3-clear"></p></div>`
+			var content_literal = `<div class="w3-container w3-white w3-margin w3-padding-large"><div class="w3-center">${content} ${control_literal} ${reply_content}</div></div>`;
+			return content_literal;
+		}
+		function htmlDecode(input){
+		  var e = document.createElement('div');
+		  e.innerHTML = input;
+		  // handle case of empty input
+		  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+		}
+
+		var article_arr = document.querySelectorAll(".article-data");
+		var div_arr = [...article_arr].map((el, index)=>{
+			var content = htmlDecode(el.innerHTML);
+			return {id: el.dataset.articleid, content: content, like_num: 0, reply_num: 0, reply_content: ""}
+		})
+		console.log('here A');
+		var like_arr = document.querySelectorAll(".like-data");
+		[...like_arr].map((el, index)=>{
+			console.log("like iso_string: ", el.dataset.articleid.substring(0, 24));
+			var found_index = div_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 27)})
+			if(found_index > -1){
+				div_arr[found_index].like_num++;
+			}
+		})
+		console.log("here B")
+		var reply_arr = document.querySelectorAll(".reply-data");
+		[...reply_arr].map((el, index)=>{
+			console.log("reply iso_string: ", el.dataset.articleid.substring(0, 24));
+			var found_index = div_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 24)})
+			if(found_index > -1){
+				div_arr[found_index].reply_num++;
+				div_arr[found_index].reply_content+= htmlDecode(el.innerHTML)
+
+			}
+		})
+		
+		var body = div_arr.reduce(function(res, el){
+		  return res+= combineAll(el.content, el.like_num, el.reply_num, el.reply_content);
+		}, "");
+
+		var articles_here = document.getElementById("articles_here");
+		articles_here.innerHTML = body;
+		
+
+		
+	</script>
+	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/modal-ui.js' type='text/javascript'></script>
+	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/cognito.js' type='text/javascript'></script>
+	<script>doRefresh(function(err, msg){
+		(err) ? console.log(err) : console.log(msg);
+	})</script>
+	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/entry-ui.js' type='text/javascript'></script>
+	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/image-ui.js' type="text/javascript"></script>
 	</body>
 </html>

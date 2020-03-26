@@ -36,7 +36,7 @@ var app = http.createServer(function(req, res){
 					console.log("result_arr[3][1]: ", result_arr[3][1]);
 					res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
 					var stream = mu.compileAndRender(
-						"template.html", 
+						"optionA.html", 
 						{
 							Article: JSON.parse(result_arr[1][1]).Items,
 							Like: JSON.parse(result_arr[2][1]).Items,
