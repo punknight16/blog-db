@@ -273,31 +273,50 @@ footer ul{
 	  </div>
 	
 	  <div id="profileContainer" class="modal no-robot">
-	  <!-- Modal content -->
-	  <div class="modal-content">
-	    <span class="close">&times;</span>
-	    <div id='modal-body'>
-	    	<h3>Create Profile</h3>
-	    	<div style="display: block-inline; margin-bottom: 10px">
-	    		<label>Full Name
-	    		<input type='text' id="fullName" size="26" />
-	    	</div>
-	    	<input type='file' id="imgInp" class="width-300" />
-			   <div id='view-panel' class='height-width-300 border mt-5'>
-			    	<div id='image-layer' class='layer-0' style="display:flex; justify-content:center; align-items:center;">
-			    		<img id="image" src="#" alt="your image"  class='height-width-300'/>
-			    	</div>
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <div id='modal-body'>
+		    	<h3>Create Profile</h3>
+		    	<div style="display: block-inline; margin-bottom: 10px">
+		    		<label>Full Name
+		    		<input type='text' id="fullnameInp" size="26" />
+		    	</div>
+		    	<input type='file' id="imgInp" class="width-300" />
+				  	<div id='view-panel' class='height-width-300 border mt-5'>
+				    	<div id='image-layer' class='layer-0' style="display:flex; justify-content:center; align-items:center;">
+				    		<img id="image" src="#" alt="your image"  class='height-width-300'/>
+				    	</div>
+				    </div>
+				    <div style="margin-top: 10px; display: flex; justify-content: space-around">
+				  		<button id="uploadImgBtn" class="btn-dem btn-dem-primary">Upload</button>
+				  		<button id="cancelImgBtn" class="btn-dem btn-dem-secondary">Clear</button>
+				  	</div>
+		    </div>
+		  </div>
+		</div>
+
+		<div id="replyContainer" class="modal no-robot">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <div id='modal-body'>
+		    	<h3>Reply To Article</h3>
+			  	<div id='replyInp' class='height-width-300 border mt-5' contenteditable>
+			    <input id='articleId' type='hidden'>
+
 			    </div>
-			    <div style="margin-top: 10px; display: flex; justify-content: space-around">
-			  		<button id="uploadImgBtn" class="btn-dem btn-dem-primary">Upload</button>
-			  		<button id="cancelImgBtn" class="btn-dem btn-dem-secondary">Clear</button>
-			  	</div>
-	    </div>
-	  </div>
-	</div>
+				    <div style="margin-top: 10px; display: flex; justify-content: space-around">
+				  		<button id="uploadReplyBtn" class="btn-dem btn-dem-primary" onclick="uploadReply()">Upload</button>
+				  		<button id="cancelReplyBtn" class="btn-dem btn-dem-secondary" onclick="cancelReply()">Clear</button>
+				  	</div>
+		    </div>
+		  </div>
+		</div>
 
 		</main>
 		<script>
+		var s3 = null;
 		var AppContext = {LastEvalVal: null};
 		//pull blog from DB//
 		/*
@@ -407,8 +426,8 @@ function toggleRegister(e){
 
 	<script>
 
-		function combineAll(content, likes, replies, reply_content){
-			var control_literal = `<div class="w3-justify"><br><p class="w3-left"><button class="w3-button w3-white w3-border" onclick="likeFunction(this)"><b><i class="fa fa-thumbs-up"></i> Like &nbsp;</b><span class="w3-tag w3-white w3-border">${likes}</span></button></p><p class="w3-right"><button class="w3-button w3-black" onclick="myFunction('demo2')"><b>Replies &nbsp;</b> <span class="w3-tag w3-white">${replies}</span></button></p><p class="w3-clear"></p></div>`
+		function combineAll(content, likes, replies, reply_content, id){
+			var control_literal = `<div class="w3-justify"><br><p class="w3-left"><button class="w3-button w3-white w3-border" onclick="uploadLike('${id}')"><b><i class="fa fa-thumbs-up"></i> Like &nbsp;</b><span class="w3-tag w3-white w3-border">${likes}</span></button></p><p class="w3-right"><button class="w3-button w3-black" onclick="openReplyContainer('${id}')"><b>Replies &nbsp;</b> <span class="w3-tag w3-white">${replies}</span></button></p><p class="w3-clear"></p></div>`
 			var content_literal = `<div class="w3-container w3-white w3-margin w3-padding-large"><div class="w3-center">${content} ${control_literal} ${reply_content}</div></div>`;
 			return content_literal;
 		}
@@ -446,7 +465,7 @@ function toggleRegister(e){
 		})
 		
 		var body = div_arr.reduce(function(res, el){
-		  return res+= combineAll(el.content, el.like_num, el.reply_num, el.reply_content);
+		  return res+= combineAll(el.content, el.like_num, el.reply_num, el.reply_content, el.id);
 		}, "");
 
 		var articles_here = document.getElementById("articles_here");
@@ -457,10 +476,30 @@ function toggleRegister(e){
 	</script>
 	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/modal-ui.js' type='text/javascript'></script>
 	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/cognito.js' type='text/javascript'></script>
-	<script>doRefresh(function(err, msg){
-		(err) ? console.log(err) : console.log(msg);
-	})</script>
+
 	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/entry-ui.js' type='text/javascript'></script>
 	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/image-ui.js' type="text/javascript"></script>
+	<script src='https://unwyre-user.s3-us-west-2.amazonaws.com/user/us-west-2%3A49307e47-8c31-4628-a607-a7eb852d50ae/js/control-ui.js'></script>
+	<script>
+		$(function(){
+			doRefresh(function(err, cognitoUser){
+				if(err) {
+					console.log('you are not logged in');
+				} else {
+			    
+					cognitoUser.getUserAttributes(function(err, result) {
+			  		console.log('result: ', result);
+			      console.log('err: ', err);
+			      AppContext.sub = result[0].getValue();
+			      AppContext.emailAddr = result[result.length-1].getValue();
+
+			    s3 = new AWS.S3({
+					    "region": "us-west-2"
+					  });
+					});	
+				}
+			});
+		});
+	</script>
 	</body>
 </html>

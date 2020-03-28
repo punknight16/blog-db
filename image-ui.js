@@ -4,7 +4,10 @@ $("#imgInp").change(function(){
 });
 
 $("#uploadImgBtn").click(function(){
-  uploadImage(document.getElementById("imgInp"), function(err, msg){
+  var imgInp = document.getElementById("imgInp");
+  var FullName = document.getElementById("fullnameInp").value;
+  var email = AppContext.emailAddr;
+  uploadImage(imgInp, FullName, email, function(err, msg){
     if(err) {
       var modal = document.getElementById("profileContainer");
       modal.style.display = "none";
@@ -32,16 +35,8 @@ function readURL(input) {
   
 }
 
-var s3 = new AWS.S3({
-  "region": "us-west-2",
-  "accessKeyId": AWS.config.credentials.accessKeyId,
-  "secretAccessKey": AWS.config.credentials.secretAccessKey
-});
-
-var bucket = "unwyre-user"
-
-function uploadImage(input, cb) {
-    
+function uploadImage(input, fullname, email, cb) {
+  var bucket = "unwyre-user";
   if (input.files && input.files[0]) {
     var img = input.files[0];
     var filename = getFilename(input);
@@ -63,11 +58,12 @@ function uploadImage(input, cb) {
       if (err) {
         return cb(err);
       } else {
-        var msg = 'Your image is hosted at <https://unwyre-user.s3-us-west-2.amazonaws.com/profile-image/';
-        msg+= identityId;
-        msg+="/";
-        msg+=filename.replace(/%20/g,"+");
-        msg+=">";
+        var ProfileImage = "https://unwyre-user.s3-us-west-2.amazonaws.com/profile-image/";
+        ProfileImage+= identityId;
+        ProfileImage+="/";
+        ProfileImage+=filename.replace(/%20/g,"+");
+        updateProfile(email, window.location.hostname, fullname, ProfileImage);
+        var msg = `Your image is hosted at <${ProfileImage}>`;
         return cb(null, msg);
       }
     });
@@ -84,4 +80,19 @@ function getFilename(input){
       }
       return filename
   }
+}
+
+function updateProfile(EmailAddr, DomainName, FullName, ProfileImage){
+  fetch('https://4vzrcsgyy5.execute-api.us-west-2.amazonaws.com/prod/update', {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify({
+        EmailAddr: EmailAddr,
+        DomainName: DomainName,
+        FullName: FullName,
+        ProfileImage: ProfileImage
+      }),
+    })
+      .then((response) => {
+        console.log(response)
+      })
 }
