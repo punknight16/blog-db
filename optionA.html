@@ -447,7 +447,7 @@ function toggleRegister(e){
 		var like_arr = document.querySelectorAll(".like-data");
 		[...like_arr].map((el, index)=>{
 			console.log("like iso_string: ", el.dataset.articleid.substring(0, 24));
-			var found_index = div_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 27)})
+			var found_index = div_arr.findIndex((obj)=>{return obj.id == el.dataset.articleid.substring(0, 24)})
 			if(found_index > -1){
 				div_arr[found_index].like_num++;
 			}

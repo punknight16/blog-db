@@ -26,3 +26,22 @@ function uploadReply(){
         alert('refresh page to see your reply posted');
       }) 
 }
+
+function uploadLike(id){
+  var emailAddr = AppContext.emailAddr;
+  var domain = window.location.hostname;
+  var articleId = id;
+
+  fetch('https://ou4dst87ad.execute-api.us-west-2.amazonaws.com/prod/add', {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify({
+        EmailAddr: emailAddr,
+        DomainName: domain,
+        PublishDate: articleId
+      }),
+    })
+      .then((response) => {
+        console.log(response)
+        alert('refresh page to see your like updated');
+      }) 
+}
